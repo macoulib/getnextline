@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:48 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/21 18:35:15 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:45:47 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char    *get_next_line(int fd)
 {
     char    *buffer;
     char    *stockbuffer = "";
-    static char *staticbuffer;
+    //static char *staticbuffer;
     char    *line;
     char    *restant;
     size_t  byte_read;
@@ -32,8 +32,9 @@ char    *get_next_line(int fd)
         return NULL;
      if (!buffer)
         return NULL;
+    line =  NULL;
    byte_read = read(fd, buffer, BUFFER_SIZE);
-    
+   //staticbuffer = ft_strdup(buffer);
     while (byte_read  > 0)
     {
         buffer[byte_read] = '\0';
@@ -55,6 +56,7 @@ char    *get_next_line(int fd)
                 restant[k] = buffer[k];
                 k ++ ;
             }
+           
             restant[k] ='\0';
             line = ft_strjoin(stockbuffer ,restant);
             break;
@@ -62,6 +64,7 @@ char    *get_next_line(int fd)
         byte_read = read(fd, buffer, BUFFER_SIZE);
     }
     printf("%s \n", line);
+   
     free(buffer); 
     return line;
 }
