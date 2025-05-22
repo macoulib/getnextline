@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:43 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/21 17:26:21 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:08:34 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,3 @@ char	*ft_strjoin(char  *s1, char  *s2)
 }
 
 
-void	*ft_memcpy(void *dest, void *src, size_t n)
-{
-	char	*srcpy;
-	char	*destcpy;
-	size_t	i;
-
-	srcpy = (char *)src;
-	destcpy = (char *)dest;
-	i = 0;
-	if (dest == src || n == 0)
-		return (dest);
-	while (i < n)
-	{
-		destcpy[i] = srcpy[i];
-		i ++;
-	}
-	return (dest);
-}
