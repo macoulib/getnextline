@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:43 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/23 13:17:26 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/24 21:49:17 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlen( const char *theString )
 	size_t	i;
 
 	i = 0;
+	if (!theString)
+		return (0);
 	while (theString[i])
 		i++;
 	return (i);
@@ -56,12 +58,12 @@ char	*ft_strjoin(char  *s1, char  *s2)
 	s1s2cpy = malloc ((s1s2len + 1) * sizeof(char));
 	if (!s1s2cpy)
 		return (NULL);
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		s1s2cpy[i] = s1[i];
 		i++;
 	}
-	while (s2[j])
+	while (s2 && s2[j])
 	{
 		s1s2cpy[i] = s2[j];
 		i++;

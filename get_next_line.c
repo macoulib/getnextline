@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:58:53 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/24 17:50:44 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/24 21:52:58 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,25 @@
 char    *readfile (int fd, char *staticbuffer)
 {
     char *buffer;
+    int byteread ;
 
-    int byteread = 1;
-
-    buffer = malloc(BUFFER_SIZE);
+    buffer = malloc(BUFFER_SIZE + 1);
+    byteread = 1;
     while (byteread > 0)
     {
-       
         byteread = read(fd, buffer, BUFFER_SIZE);
-        buffer[byteread] = '\0';
         if (byteread == -1)
         {
             free(buffer);
             return (NULL);
         }
+        buffer[byteread] = 0;
         staticbuffer = ft_strjoin(staticbuffer,buffer);
+        if (!staticbuffer)
+        {
+            free(buffer);
+            return(NULL);
+        }
         if(ft_strchr(buffer,'\n'))
             break;
     }
@@ -49,8 +53,9 @@ char    *definedline(char *staticbuffer)
     i = 0;
     while (staticbuffer[i] != '\n' && staticbuffer[i])
         i++;
-    line = malloc( i + 2);
-
+    if (staticbuffer[i] == '\n')
+        i++;
+    line = malloc( i + 1);
     i = 0;
     while (staticbuffer[i] != '\n' && staticbuffer[i])
     {
@@ -60,34 +65,68 @@ char    *definedline(char *staticbuffer)
     line[i] = '\n';
     line[i+1] = '\0';
     return (line);
-}  
+}
+char *therest(char *staticbuffer)
+{
+    size_t  i;
+    size_t  j;
+    char    *therest;
+    
+    i = 0;
+    j = 0;
+    while(staticbuffer[i] && staticbuffer[i] != '\n')
+        i++;
+    if (!staticbuffer[i])
+    {
+        free(staticbuffer);
+        return (NULL);
+    }
+    i++;
+    therest = malloc(( ft_strlen(staticbuffer) - i) + 1 );
+    while (staticbuffer[i])
+    {
+        therest[j] = staticbuffer[i];
+        i++;
+        j++;
+    }
+    therest[j] = '\0';
+    free(staticbuffer);
+    return (therest);
+}
 
 char    *get_next_line(int fd)
 {
-    char    static *staticbuffer;
-    char    *line = NULL;
+    static    char *staticbuffer = NULL;
+    char    *line;
     
-    staticbuffer = malloc(1024);
-    if(!staticbuffer)
-        return (NULL);
+    line = NULL;
+    if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
     staticbuffer = readfile(fd,staticbuffer);
     line = definedline(staticbuffer);
+    staticbuffer = therest(staticbuffer);
+   // printf(" rest %s \n", staticbuffer) ;
     return (line);
 }
 
 
-
-
-
-int main(void) {
+int main() {
+   
     int fd = open("ex.txt", O_RDONLY);
-    
-    printf("%s \n",get_next_line(fd));
-     printf("%s \n",get_next_line(fd));
-      printf("%s \n",get_next_line(fd));
-       printf("%s \n",get_next_line(fd));
-    //get_next_line(fd);
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+    printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
+   printf(" %s \n",get_next_line(fd));
 
+   //printf(" %s \n",get_next_line(fd));
+  // get_next_line(fd);
+  // get_next_line(fd);
 
     close(fd); 
     return 0;
