@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:43 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/22 14:08:34 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:17:26 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,3 +72,15 @@ char	*ft_strjoin(char  *s1, char  *s2)
 }
 
 
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (unsigned char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((unsigned char)c == '\0')
+		return ((char *)s);
+	return (NULL);
+}

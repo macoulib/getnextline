@@ -1,0 +1,5 @@
+1 lire un text ,
+2 voir sil ya le backlash sil ya pas il stock dans une variable et relance la lecture 
+3 sil trouve il sarrete stock le text jusquau back slash et garde le reste dans une variable .
+4 relance sil trouve un autre il copie lancienne variable  dabord avant de copier lancien ainsi de suite 
+5 sil trouve rien il sort de la boucle .
