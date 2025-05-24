@@ -1,6 +1,6 @@
-Si read() retourne 0 (fin de fichier). 
+Si read() retourne 0 (fin de fichier).fr 
 et que tu as déjà quelque chose dans stockbuffer (reste non vide). 
-tu devrais retourner ce qui est stocké, même s’il n’y a pas de \n.
+tu devrais retourner ce qui est stocké, même s’il n’y a pas de.
 Sinon tu perds la dernière ligne.
 Sinon tu perds la dernière ligne.
 Sinon tu perds la dernière ligne.

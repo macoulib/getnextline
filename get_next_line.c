@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:58:53 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/24 16:53:04 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/24 17:50:44 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@
 char    *readfile (int fd, char *staticbuffer)
 {
     char *buffer;
-    size_t  byteread = 1;
+
+    int byteread = 1;
 
     buffer = malloc(BUFFER_SIZE);
     while (byteread > 0)
     {
+       
         byteread = read(fd, buffer, BUFFER_SIZE);
         buffer[byteread] = '\0';
-        if (byteread < 0)
+        if (byteread == -1)
         {
             free(buffer);
             return (NULL);
@@ -33,16 +35,16 @@ char    *readfile (int fd, char *staticbuffer)
         staticbuffer = ft_strjoin(staticbuffer,buffer);
         if(ft_strchr(buffer,'\n'))
             break;
-        free(buffer);
     }
+    free(buffer);
     return (staticbuffer);
-    
 }
+
 
 char    *definedline(char *staticbuffer)
 {
     size_t  i;
-    char    *line;
+    char    *line; 
     
     i = 0;
     while (staticbuffer[i] != '\n' && staticbuffer[i])
@@ -56,14 +58,14 @@ char    *definedline(char *staticbuffer)
         i++ ;
     }
     line[i] = '\n';
-    line[i + 1] = '\0';
+    line[i+1] = '\0';
     return (line);
-} 
+}  
 
 char    *get_next_line(int fd)
 {
     char    static *staticbuffer;
-    char    *line ;
+    char    *line = NULL;
     
     staticbuffer = malloc(1024);
     if(!staticbuffer)
@@ -80,9 +82,13 @@ char    *get_next_line(int fd)
 int main(void) {
     int fd = open("ex.txt", O_RDONLY);
     
-    //printf("%s \n",get_next_line(fd));
-   // printf("%s \n",get_next_line(fd));
-  get_next_line(fd);
+    printf("%s \n",get_next_line(fd));
+     printf("%s \n",get_next_line(fd));
+      printf("%s \n",get_next_line(fd));
+       printf("%s \n",get_next_line(fd));
+    //get_next_line(fd);
+
+
     close(fd); 
     return 0;
 }
