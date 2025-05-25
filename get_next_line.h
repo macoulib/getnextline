@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:51 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/23 13:24:27 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/25 12:39:07 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE  5
-
-char	*ft_strdup( char *src);
-char    *get_next_line(int fd);
+#define BUFFER_SIZE  1000
 char    *get_next_line(int fd);
 size_t	ft_strlen(  const char *theString );
 char    *ft_strjoin(char  *s1, char  *s2);
