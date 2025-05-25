@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:58:53 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/25 12:38:49 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/25 13:05:04 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*definedline(char *staticbuffer)
 
 	i = 0;
 	slashexist = 0;
-	if(staticbuffer[i] == '\0')
+	if (staticbuffer[i] == '\0')
 		return (NULL);
 	while (staticbuffer[i] != '\n' && staticbuffer[i])
 		i++;
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-
+/* 
 int main() {
    
     int fd = open("ex.txt", O_RDONLY);
@@ -132,4 +132,5 @@ int main() {
 
     close(fd); 
     return 0;
-} 
+} */
+
