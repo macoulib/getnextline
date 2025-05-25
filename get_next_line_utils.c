@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:43 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/24 21:49:17 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:24:08 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen( const char *theString )
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	size_t	s1s2len;
 	size_t	i;
@@ -63,4 +63,30 @@ char	*ft_strchr(const char *s, int c)
 	if ((unsigned char)c == '\0')
 		return ((char *)s);
 	return (NULL);
+}
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*scpy;
+	size_t			i;
+
+	i = 0 ;
+	scpy = (unsigned char *) s;
+	while (n > i)
+	{
+		scpy[i] = '\0';
+		i++;
+	}
+}
+
+void	*ft_calloc( size_t elementCount, size_t elementSize )
+{
+	void	*moncalloc;
+	size_t	nbr;
+
+	nbr = elementCount * elementSize;
+	moncalloc = malloc(nbr);
+	if (!moncalloc)
+		return (NULL);
+	ft_bzero(moncalloc, nbr);
+	return (moncalloc);
 }

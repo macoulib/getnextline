@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 14:43:51 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/25 12:55:38 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/25 17:24:44 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *theString );
+void	*ft_calloc( size_t elementCount, size_t elementSize );
+void	ft_bzero(void *s, size_t n);
 
 #endif
