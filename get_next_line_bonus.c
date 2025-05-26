@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/22 19:58:53 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/26 09:54:13 by macoulib         ###   ########.fr       */
+/*   Created: 2025/05/26 09:55:45 by macoulib          #+#    #+#             */
+/*   Updated: 2025/05/26 10:04:32 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*freestat(char	*staticbuffer, char *buffer)
 {
@@ -109,16 +109,16 @@ char	*therest(char *staticbuffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*staticbuffer = NULL;
+	static char	*staticbuffer[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	staticbuffer = readfile(fd, staticbuffer);
-	if (!staticbuffer)
+	staticbuffer[fd] = readfile(fd, staticbuffer[fd]);
+	if (!staticbuffer[fd])
 		return (NULL);
-	line = definedline(staticbuffer);
-	staticbuffer = therest(staticbuffer);
+	line = definedline(staticbuffer[fd]);
+	staticbuffer[fd] = therest(staticbuffer[fd]);
 	return (line);
 }
 /*
