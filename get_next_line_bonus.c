@@ -6,7 +6,7 @@
 /*   By: macoulib <macoulib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 09:55:45 by macoulib          #+#    #+#             */
-/*   Updated: 2025/05/26 10:04:32 by macoulib         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:35:45 by macoulib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,22 @@ char	*readfile(int fd, char *staticbuffer)
 	int		byteread;
 
 	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
 	byteread = 1;
 	while (byteread > 0)
 	{
 		byteread = read(fd, buffer, BUFFER_SIZE);
 		if (byteread == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
+			return (free(buffer), NULL);
 		buffer[byteread] = 0;
 		staticbuffer = freestat(staticbuffer, buffer);
 		if (!staticbuffer)
-		{
-			free(buffer);
-			return (NULL);
-		}
+			return (free(buffer), NULL);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
-	free(buffer);
-	return (staticbuffer);
+	return (free(buffer), staticbuffer);
 }
 
 char	*definedline(char *staticbuffer)
@@ -96,11 +91,11 @@ char	*therest(char *staticbuffer)
 	}
 	i++;
 	therest = malloc((ft_strlen(staticbuffer) - i) + 1);
+	if (!therest)
+		return (NULL);
 	while (staticbuffer[i])
 	{
-		therest[j] = staticbuffer[i];
-		i++;
-		j++;
+		therest[j++] = staticbuffer[i++];
 	}
 	therest[j] = '\0';
 	free(staticbuffer);
